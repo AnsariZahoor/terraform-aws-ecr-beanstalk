@@ -1,9 +1,13 @@
+provider "aws" {
+  region = "us-west-2"
+}
 
 ##################################################
-# Example 1: Create new ECR repository and Elastic Beanstalk
+# Complete example with new ECR repository
 ##################################################
-module "app_with_new_ecr" {
-  source = "./modules/ecr-beanstalk"
+
+module "ecr_beanstalk_complete" {
+  source = "../../"  # In actual usage, this would be the module source from registry
 
   # ECR Configuration
   create_ecr_repo         = true
@@ -47,35 +51,6 @@ module "app_with_new_ecr" {
   tags = {
     Environment = "Production"
     Project     = "MyApp"
-  }
-}
-
-##################################################
-# Example 2: Use existing ECR repository
-##################################################
-
-module "app_with_existing_ecr" {
-  source = "./modules/ecr-beanstalk"
-
-  # ECR Configuration
-  create_ecr_repo      = false
-  ecr_repo_name        = "existing-application"
-  existing_ecr_repo_arn = "arn:aws:ecr:us-west-2:123456789012:repository/existing-application"
-
-  # Elastic Beanstalk Configuration
-  beanstalk_app_name          = "existing-app"
-  beanstalk_env_name          = "existing-app-staging"
-  beanstalk_solution_stack_name = "64bit Amazon Linux 2 v3.5.0 running Docker"
-  beanstalk_tier              = "WebServer"
-  beanstalk_instance_type     = "t3.micro"
-  
-  # Environment Variables
-  beanstalk_environment_variables = {
-    ENV = "staging"
-  }
-  
-  tags = {
-    Environment = "Staging"
-    Project     = "ExistingApp"
+    ManagedBy   = "Terraform"
   }
 }

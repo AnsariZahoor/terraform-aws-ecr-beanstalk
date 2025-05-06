@@ -28,7 +28,7 @@ variable "ecr_image_tag_mutability" {
 variable "ecr_scan_on_push" {
   description = "Indicates whether images are scanned after being pushed to the repository"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "tags" {

@@ -1,4 +1,4 @@
-# AWS ECR and Elastic Beanstalk Terraform Module
+# terraform-aws-ecr-beanstalk
 
 This Terraform module creates an AWS Elastic Container Registry (ECR) repository and an AWS Elastic Beanstalk environment with necessary configurations. The module allows you to either create a new ECR repository or use an existing one.
 
